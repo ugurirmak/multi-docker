@@ -3,20 +3,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t uirmak/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t ugurirmak/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run uirmak/react-test npm test -- --coverage
+  - docker run ugurirmak/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t uirmak/multi-client ./client
-  - docker build -t uirmak/multi-nginx ./nginx
-  - docker build -t uirmak/multi-server ./server
-  - docker build -t uirmak/multi-worker ./worker
+  - docker build -t ugurirmak/multi-client ./client
+  - docker build -t ugurirmak/multi-nginx ./nginx
+  - docker build -t ugurirmak/multi-server ./server
+  - docker build -t ugurirmak/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push uirmak/multi-client
-  - docker push uirmak/multi-nginx
-  - docker push uirmak/multi-server
-  - docker push uirmak/multi-worker
+  - docker push ugurirmak/multi-client
+  - docker push ugurirmak/multi-nginx
+  - docker push ugurirmak/multi-server
+  - docker push ugurirmak/multi-worker
